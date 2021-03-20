@@ -1,3 +1,4 @@
+import { PiCoinService } from './../../../pi-coin/pi-coin.service';
 import { IFriend } from '@utilities/interfaces/user.interface';
 import { AbstractModal } from '@utilities/abstract/modal';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ import { ELoginStatus } from '@utilities/enums/user.enum';
 export class FriendsListComponent extends AbstractModal implements OnInit {
 
   constructor(
-    public $user: UserService
+    public $user: UserService,
+    public $pinCoin: PiCoinService
   ) {
     super();
   }

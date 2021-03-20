@@ -29,19 +29,17 @@ export class DashboardComponent extends UnsubOndestroy implements OnInit {
     ).subscribe();
   }
 
-  public isDigging = false;
   public piCoins = 0;
   get allowDigging() { return !this.$time.isAfterToday(this.$piCoin.nextDiggingTime); }
 
   @HostListener('click') dip() {
-    if (!this.isDigging && this.allowDigging) {
+    if (!this.$piCoin.isDigging && this.allowDigging) {
       this.$piCoin.onDig();
-      this.isDigging = true;
+      this.$piCoin.isDigging = true;
     }
   }
 
   public getDiggingFriendsNumber(friends: IFriend[]): number {
-    console.log(friends)
     return friends.filter(friend => friend.status === ELoginStatus.Digging).length;
   }
 
@@ -50,7 +48,6 @@ export class DashboardComponent extends UnsubOndestroy implements OnInit {
       event.stopPropagation();
     }
     this.$piCoin.endDig();
-    this.isDigging = false
   }
 
   public onDestory() {

@@ -16,6 +16,9 @@ export class PiCoinService {
     this.initial$.subscribe();
   }
 
+  public nextDiggingTime: Date;
+  public isDigging: boolean;
+
   private diggingTimer;
   private initial$ = this.$user.user$.pipe(
     take(1),
@@ -24,7 +27,6 @@ export class PiCoinService {
       this.piCoin.next(user.totalCoins);
     })
   )
-  public nextDiggingTime: Date;
 
   private piCoin = new ReplaySubject<number>();
   public piCoin$ = this.piCoin.asObservable().pipe(
@@ -40,5 +42,6 @@ export class PiCoinService {
     clearInterval(this.diggingTimer);
     this.nextDiggingTime = this.$time.getDateByToday({ hours: 24 });
     this.$user.updateNextDiggingTime$(this.nextDiggingTime).subscribe();
+    this.isDigging = false
   }
 }

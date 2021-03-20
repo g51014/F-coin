@@ -31,6 +31,9 @@
     p {
       font-size: map-get($font-size, "xs");
     }
+    .digging {
+      background-color: $primary;
+    }
   }
 
   &__Online {
