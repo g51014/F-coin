@@ -19,6 +19,22 @@
       border-color: $primary;
     }
   }
+  &__Digging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      position: relative;
+      em {
+        position: absolute;
+        top: 50%;
+        right: -2rem;
+        animation-name: rotatation;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
+    }
+  }
   &__Coins {
     position: fixed;
     top: 50%;
@@ -49,5 +65,15 @@
       bottom: 1rem;
       right: 1rem;
     }
+  }
+}
+
+@keyframes rotatation {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-50%) rotate(359deg);
   }
 }

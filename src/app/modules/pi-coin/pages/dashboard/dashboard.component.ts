@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { UnsubOndestroy } from '@utilities/abstract/unsub-ondestroy';
 import { TimeHelperService } from '@utilities/helpers/time-helper.service';
+import { takeUntil, tap } from 'rxjs/operators';
 import { PiCoinService } from '../../pi-coin.service';
 
 @Component({
@@ -18,10 +19,14 @@ export class DashboardComponent extends UnsubOndestroy implements OnInit {
   }
 
   ngOnInit(): void {
+    this.$piCoin.piCoin$.pipe(
+      takeUntil(this.onDestroy$),
+      tap(coin => this.piCoins = coin)
+    ).subscribe();
   }
 
   public isDigging = false;
-
+  public piCoins = 0;
   get allowDigging() { return !this.$time.isAfterToday(this.$piCoin.nextDiggingTime); }
 
   @HostListener('click') dip() {
