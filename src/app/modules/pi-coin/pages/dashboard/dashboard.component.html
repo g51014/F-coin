@@ -21,8 +21,10 @@
     <div class="Dashboard__Digging">
       <h1 class="text-center">挖礦中<em class="icon-loading"></em></h1>
     </div>
-    <p class="mt-2 text-center">每秒可獲得<ng-template [ngTemplateOutlet]="tCoins"
-        [ngTemplateOutletContext]="{$implicit: 1}"></ng-template>，結束後24小時內不可以再挖礦
+    <p *ngIf="this.$user.friends$ | async as friends" class="mt-2 text-center">每秒可獲得<ng-template
+        [ngTemplateOutlet]="tCoins"
+        [ngTemplateOutletContext]="{$implicit: (1 + this.getDiggingFriendsNumber(friends) * 0.25)}"></ng-template>
+      ，結束後24小時內不可以再挖礦
     </p>
     <button (click)="this.stop($event)" type="button">結束</button>
   </div>

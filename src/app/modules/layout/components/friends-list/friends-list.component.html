@@ -1,0 +1,12 @@
+<div #tContainer class="FriendsList">
+  <div (click)="this.isOpen ? this.collapse() : this.expand(tContainer)" class="FriendsList__Header px-2">
+    <span class="mr-1"></span>
+    <p>空閑</p>
+    <div class="FriendsList__Online">
+      {{this.onlineFriends.length}}
+    </div>
+  </div>
+  <div *ngIf="this.isOpen" class="FriendsList__Container">
+
+  </div>
+</div>

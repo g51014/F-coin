@@ -1,7 +1,8 @@
-import { scan } from 'rxjs/operators';
+import { map, scan, switchMap, take, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { TimeHelperService } from '@utilities/helpers/time-helper.service';
+import { UserService } from '@services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,26 @@ import { TimeHelperService } from '@utilities/helpers/time-helper.service';
 export class PiCoinService {
 
   constructor(
-    private $time: TimeHelperService
-  ) { }
+    private $time: TimeHelperService,
+    private $user: UserService
+  ) {
+    this.initial$.subscribe();
+  }
 
   private diggingTimer;
+  private initial$ = this.$user.user$.pipe(
+    take(1),
+    tap(user => {
+      this.nextDiggingTime = new Date(user.nextDiggingTime);
+      this.piCoin.next(user.totalCoins);
+    })
+  )
   public nextDiggingTime: Date;
 
   private piCoin = new ReplaySubject<number>();
   public piCoin$ = this.piCoin.asObservable().pipe(
     scan((previous, current) => previous + current),
+    switchMap(totalCoins => this.$user.updateCoinsNumber$(totalCoins))
   );
 
   public onDig() {
@@ -27,5 +39,6 @@ export class PiCoinService {
   public endDig() {
     clearInterval(this.diggingTimer);
     this.nextDiggingTime = this.$time.getDateByToday({ hours: 24 });
+    this.$user.updateNextDiggingTime$(this.nextDiggingTime).subscribe();
   }
 }

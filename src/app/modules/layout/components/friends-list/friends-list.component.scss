@@ -1,0 +1,54 @@
+@import "variables";
+@import "mixins";
+
+.FriendsList {
+  position: absolute;
+  bottom: 0;
+  right: 0.75rem;
+  width: 15rem;
+  &:hover {
+    .FriendsList__Header {
+      background-color: $blue-layer-2;
+    }
+  }
+  &__Header {
+    position: relative;
+    span {
+      width: 0.75rem;
+      height: 0.75rem;
+      background-color: $bean-green;
+      border-radius: 100%;
+    }
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    background-color: $blue-layer-3;
+    height: 2.5rem;
+    color: $white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    p {
+      font-size: map-get($font-size, "xs");
+    }
+  }
+
+  &__Online {
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    border-radius: 100%;
+    background-color: $danger;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__Container {
+    height: 15rem;
+    background-color: $white;
+  }
+}
