@@ -1,0 +1,36 @@
+<div class="row Dashboard pt-md-4_2 pt-2">
+  <ng-template [ngTemplateOutlet]="this.isDigging ? tEnd : tStart"></ng-template>
+  <div class="Dashboard__Coins mt-4_2">
+    <h1>我的資產：</h1>
+    <ng-container *ngIf="this.$piCoin.piCoin$ | async as coins else tEmplty"> {{coins}}</ng-container>
+
+    <img class="ml-1" src="assets/images/p-coin-white.png" alt="">
+  </div>
+</div>
+
+<ng-template #tEmplty>
+  0
+</ng-template>
+
+<ng-template #tStart>
+  <p *ngIf="this.allowDigging" class="col-12 text-md-center">點擊畫面可開始挖礦，挖礦期間每秒可獲得<ng-template [ngTemplateOutlet]="tCoins"
+      [ngTemplateOutletContext]="{$implicit: 1}"></ng-template>，同時間有朋友正在進行挖礦的話，則每秒可額外獲得<ng-template
+      [ngTemplateOutlet]="tCoins" [ngTemplateOutletContext]="{$implicit: 0.25}"></ng-template>
+  </p>
+  <p class="col-12 text-md-center" *ngIf="!this.allowDigging">下次可挖礦時間：
+    {{this.$piCoin.nextDiggingTime | customDate: 'shortDateTime'}}</p>
+</ng-template>
+
+<ng-template #tEnd>
+  <div class="col-12">
+    <h1 class="text-center">挖礦中</h1>
+    <p class="mt-2 text-center">每秒可獲得<ng-template [ngTemplateOutlet]="tCoins"
+        [ngTemplateOutletContext]="{$implicit: 1}"></ng-template>，結束後24小時內不可以再挖礦
+    </p>
+    <button (click)="this.stop($event)" type="button">結束</button>
+  </div>
+</ng-template>
+
+<ng-template #tCoins let-number>
+  {{number}} 枚<img class="ml-1" src="assets/images/p-coin-white.png" alt="">
+</ng-template>

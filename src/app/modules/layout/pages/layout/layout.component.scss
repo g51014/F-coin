@@ -1,0 +1,13 @@
+@import "variables";
+
+.Layout {
+  height: 100vh;
+  &__Header {
+    height: $header-height;
+  }
+
+  &__Page {
+    height: calc(100vh - #{$header-height});
+    overflow-y: scroll;
+  }
+}

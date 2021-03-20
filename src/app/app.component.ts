@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { WindowService } from '@services/window.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'F-coin';
+  constructor(
+    private $window: WindowService
+  ) {
+    this.$window.resize();
+  }
+  @HostListener('window:resize') resize = () => this.$window.resize();
 }

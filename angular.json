@@ -25,11 +25,18 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
+              "src/fonts",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/fonts/_icon-font.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -123,6 +130,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "F-coin"
+    }
+  },
+  "defaultProject": "F-coin",
+  "cli": {
+    "analytics": false
+  }
 }

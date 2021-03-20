@@ -15,6 +15,20 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@services/*": [
+        "src/shared/services/*"
+      ],
+      "@directives/*": [
+        "src/shared/directives/*"
+      ],
+      "@utilities/*": [
+        "src/utilities/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ]
+    },
   }
 }

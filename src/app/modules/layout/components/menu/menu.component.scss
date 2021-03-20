@@ -1,0 +1,115 @@
+@import "variables";
+@import "mixins";
+
+.Menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    li {
+      padding: 0.25rem 0.5rem;
+      margin: 0 0.5rem;
+      position: relative;
+      &::before {
+        top: calc(100% + 0.25rem);
+        position: absolute;
+        left: 0;
+        content: "";
+        display: flex;
+        width: 0;
+        height: 2px;
+        background-color: $white;
+      }
+      font-size: map-get($font-size, "sm");
+
+      &:hover {
+        cursor: pointer;
+        color: $primary;
+        &::before {
+          width: 100%;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+.active {
+  border: 1px $primary solid;
+  &:hover {
+    &::before {
+      display: none !important;
+    }
+    cursor: auto !important;
+    color: $white !important;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: map-get($layout-level, "cover");
+  background-color: rgba($black, 40%);
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, "md")) {
+  .Menu {
+    & > em {
+      font-size: map-get($font-size, "lg");
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: map-get($layout-level, "cover");
+    }
+
+    ul {
+      flex-direction: column;
+      align-items: flex-start;
+      position: fixed;
+      right: 0;
+      top: 0;
+      @include dropdown-shadow;
+      height: 100%;
+      background-color: $white;
+      width: 60%;
+      z-index: map-get($layout-level, "canvus");
+      li {
+        display: flex;
+        align-items: center;
+        color: $dark-gray-blue;
+        margin: 0;
+        width: 100%;
+        height: 3rem;
+        border-bottom: 1px $light-gray solid;
+        em {
+          color: $dark-gray-blue;
+          font-size: map-get($font-size, "lg");
+        }
+        &:hover {
+          color: $primary;
+          em {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .active {
+    border: none;
+    color: $primary !important;
+    em {
+      color: $primary !important;
+    }
+    &:hover {
+      color: $primary !important;
+    }
+  }
+}

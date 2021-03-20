@@ -1,0 +1,17 @@
+<div #tMenu class="ml-md-3 ml-0 Menu">
+  <em (click)="this.expand(tMenu)" class="d-md-none icon-list"></em>
+  <div class="d-none d-md-block">
+    <ng-template [ngTemplateOutlet]="tMenuItem"></ng-template>
+  </div>
+  <div *ngIf="this.isOpen">
+    <ng-template [ngTemplateOutlet]="tMenuItem"></ng-template>
+  </div>
+</div>
+<div *ngIf="this.isOpen" class="backdrop"></div>
+
+<ng-template #tMenuItem>
+  <ul>
+    <li class="mr-md-3" [class.active]="this.router.url.includes('pi-coin')" (click)="this.router.navigateByUrl('pi-coin')"><em
+        class="icon-account2 d-md-none mr-2"></em>挖幣去</li>
+  </ul>
+</ng-template>
