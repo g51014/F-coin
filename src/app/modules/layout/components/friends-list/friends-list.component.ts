@@ -22,6 +22,7 @@ export class FriendsListComponent extends AbstractModal implements OnInit {
   }
 
   get onlineFriends(): IFriend[] { return this.friends.filter(friend => friend.status === ELoginStatus.Online); }
+  get status(): typeof ELoginStatus { return ELoginStatus; }
 
   public friends: IFriend[] = [];
   private socket$ = interval(1000).pipe(

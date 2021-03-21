@@ -2,7 +2,7 @@ import { map, take, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ELoginStatus } from '@utilities/enums/user.enum';
 import { IFriend, IUser } from '@utilities/interfaces/user.interface';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

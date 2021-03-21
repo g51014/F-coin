@@ -7,6 +7,11 @@
     </div>
   </div>
   <div *ngIf="this.isOpen" class="FriendsList__Container">
-
+    <ul class="p-2">
+      <li class="py-2" *ngFor="let friend of this.friends; let index =index; trackBy:index">
+        <p [class.online]="friend.status === this.status.Online" [class.offline]="friend.status === this.status.Offline"
+          [class.digging]="friend.status === this.status.Digging">{{friend.name}}</p>
+      </li>
+    </ul>
   </div>
 </div>

@@ -51,7 +51,46 @@
   }
 
   &__Container {
+    overflow-y: auto;
     height: 15rem;
     background-color: $white;
+    ul {
+      li {
+        color: $midnight;
+        &:not(:last-child) {
+          border-bottom: 1px solid $gray-blue;
+        }
+        p {
+          position: relative;
+          padding-left: 1rem;
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            transform: translateY(-50%);
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 100%;
+          }
+        }
+        .online {
+          &::before {
+            background-color: $bean-green;
+          }
+        }
+        .offline {
+          &::before {
+            background-color: $dark-gray-blue;
+          }
+        }
+        .digging {
+          &::before {
+            background-color: $primary;
+          }
+        }
+      }
+    }
   }
 }
