@@ -13,28 +13,29 @@ export class UserService {
     this.initial();
   }
 
+  get currentUser() { return JSON.parse(localStorage.getItem('user')); }
+  get currentFriends() { return JSON.parse(localStorage.getItem('friends')); }
+
   public friends = new ReplaySubject<IFriend[]>();
   public friends$ = this.friends.asObservable().pipe(
     tap(friends => localStorage.setItem('friends', JSON.stringify(friends)))
   );
 
-  private user = new ReplaySubject<IUser>();
+  private user = new ReplaySubject<IUser>(1);
   public user$ = this.user.asObservable().pipe(
     tap(user => localStorage.setItem('user', JSON.stringify(user)))
   );
 
+  // call getUser and getFriends here
   private initial() {
-    this.friends.next(JSON.parse(localStorage.getItem('friends')) || this.setFriendsSocketMockData())
-    this.user.next(JSON.parse(localStorage.getItem('user')) || this.setUserMockData());
+    this.friends.next(this.currentFriends || this.setFriendsSocketMockData())
+    this.user.next(this.currentUser || this.setUserMockData());
   }
 
   // send coins number updated post request here
-  public updateCoinsNumber$ = (totalCoins: number) => this.user$.pipe(
+  public updateCoinsNumber$ = (coins: number) => this.user$.pipe(
     take(1),
-    map(user => {
-      this.user.next({ ...user, ...{ totalCoins } });
-      return totalCoins;
-    })
+    tap(user => this.user.next({ ...user, ...{ totalCoins: user.totalCoins + coins } }))
   );
 
   // send update nextDiggingTime request here
