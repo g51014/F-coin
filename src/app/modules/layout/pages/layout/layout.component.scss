@@ -9,6 +9,6 @@
   &__Page {
     position: relative;
     height: calc(100vh - #{$header-height});
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }

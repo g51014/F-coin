@@ -1,9 +1,9 @@
 <div appResponsiveViewport class="container Layout">
   <div class="row">
-    <div class="Layout__Header col-12">
+    <div #tHeader class="Layout__Header col-12">
       <app-header></app-header>
     </div>
-    <div class="Layout__Page col-12">
+    <div appResponsiveViewport [responseBuffer]="[tHeader]" class="Layout__Page col-12">
       <ng-content></ng-content>
       <app-friends-list></app-friends-list>
     </div>
