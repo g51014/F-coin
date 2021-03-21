@@ -1,3 +1,4 @@
+import { DirectivesModule } from './directives/directives.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,12 +12,14 @@ import { PipesModule } from './pipes/pipes.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    DirectivesModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    DirectivesModule
   ]
 })
 export class SharedModule { }
