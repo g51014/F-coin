@@ -11,7 +11,9 @@
 
 <ng-template #tMenuItem>
   <ul>
-    <li class="mr-md-3" [class.active]="this.router.url.includes('pi-coin')" (click)="this.router.navigateByUrl('pi-coin')"><em
-        class="icon-account2 d-md-none mr-2"></em>挖幣去</li>
+    <li class="mr-md-3" [class.active]="this.router.url.includes('pi-coin')"
+      (click)="this.router.navigateByUrl('pi-coin')"><em class="icon-account2 d-md-none mr-2"></em>挖幣去</li>
+    <li class="mr-md-3" [class.active]="this.router.url.includes('news')"
+      (click)="this.router.navigateByUrl('news')"><em class=" icon-news d-md-none mr-2"></em>新聞中心</li>
   </ul>
 </ng-template>

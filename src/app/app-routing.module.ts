@@ -7,6 +7,10 @@ const routes: Routes = [{
     {
       path: 'pi-coin',
       loadChildren: () => import('./modules/pi-coin/pi-coin.module').then(m => m.PiCoinModule)
+    },
+    {
+      path: 'news',
+      loadChildren: () => import('./modules/news/news.module').then(m => m.NewsModule)
     }
   ]
 }];

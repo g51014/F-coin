@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,13 +14,15 @@ import { PipesModule } from './pipes/pipes.module';
     FormsModule,
     ReactiveFormsModule,
     PipesModule,
-    DirectivesModule
+    DirectivesModule,
+    HttpClientModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     PipesModule,
-    DirectivesModule
+    DirectivesModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }
